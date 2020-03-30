@@ -8,16 +8,26 @@ function answerQuery(query) {
   query = v.lowerCase(query);
   if (v.includes(query, "rain") || v.includes(query, "sun") || v.includes(query, "weather"))
     return "I do not care too much about weather, I'm locked inside a data center.";
-  
+
   if (v.includes(query, "tea"))
-  return "I would love some tea, but they have not created one for silicon-based life forms yet.";
-return "Sorry Dave, I cannot do that."
+    return "I would love some tea, but they have not created one for silicon-based life forms yet.";
+
+  return "Sorry Dave, I cannot do that."
 }
 
 
 function isPermitted(query) {
   // You will need to implement this function in the last part of the exercise 
   // (after you add 'filtering.js' tests); you can ignore it until then!
+
+  var lower = v.lowerCase(query);
+
+  if (v.includes(lower, "shitake")) return true;
+  if (v.includes(lower, "brexit")) return false;
+  if (v.includes(lower, "shit")) return false;
+
+
+
   return true;
 }
 
@@ -27,7 +37,7 @@ function handleSayClick() {
   // which we are using for showing all the conversation history
   var message = document.getElementById('message').value.toLowerCase();
   var conversation = document.getElementById('conversation');
-  
+
   // Check that the message does not contain any nasty words!
   if (!isPermitted(message)) {
     // If it does, just tell the user that we ignored their message
@@ -48,7 +58,7 @@ if (typeof document != "undefined") {
 }
 
 // Export the two functions that we need to access from test files!
-module.exports = { 
-  answerQuery: answerQuery, 
+module.exports = {
+  answerQuery: answerQuery,
   isPermitted: isPermitted
 }
